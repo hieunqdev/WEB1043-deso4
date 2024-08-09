@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hóa Đơn</h1>
+    <form action="">
+        <label for="khach-hang">Khách hàng</label>
+        <input type="text" name="khach-hang" id="khach-hang">
+        <span class="loi-khach-hang"></span> 
+        <br>
+        <label for="loai-hang">Loại hàng</label>
+        <select name="loai-hang" id="loai-hang" onchange="chonLoai()">
+            <option value="1">Loại 1</option>
+            <option value="2">Loại 2</option>
+            <option value="3">Loại 3</option>
+        </select>
+        <br>
+        <label for="don-gia">Đơn giá</label>
+        <input type="text" name="don-gia" id="don-gia" value="500000">
+        <br>
+        <label for="so-luong">Số lượng</label>
+        <input type="text" name="so-luong" id="so-luong">
+        <br>
+        <label for="thanh-tien">Thành tiền</label>
+        <input type="text" name="thanh-tien" id="thanh-tien">
+        <br>
+        <label for="noi-nhan-hang">Nơi nhận hàng</label>
+        <input type="radio" onchange="chonNoiNhanHang()" value="1" name="noi-nhan-hang" id="noi-nhan-hang">Nội thành
+        <input type="radio" onchange="chonNoiNhanHang()" value="2" name="noi-nhan-hang" id="noi-nhan-hang">Ngoại thành
+        <br>
+        <label for="phi-van-chuyen">Phí vận chuyển</label>
+        <input type="text" name="phi-van-chuyen" id="phi-van-chuyen">
+        <br>
+    </form>
+        <button onclick="kiemTraLoi()">Đặt mua</button>
+    <script>
+        // Chọn loại hàng
+        function chonLoai() {
+            var loaiHangVal = document.getElementById('loai-hang').value;
+            var donGiaVal = document.getElementById('don-gia');
+            if (loaiHangVal == 1) {
+                donGiaVal.value = 500000;
+            }
+            if (loaiHangVal == 2) {
+                donGiaVal.value = 300000;
+            }
+            if (loaiHangVal == 3) {
+                donGiaVal.value = 100000;
+            }
+        }
+
+        // Chọn nơi nhận hàng
+        function chonNoiNhanHang() {
+            var noiNhanHangVal = document.querySelector('input[name=noi-nhan-hang]:checked').value;
+            var phiVanChuyen = document.getElementById('phi-van-chuyen');
+
+            if (noiNhanHangVal == 1) {
+                phiVanChuyen.value = 0;
+            } else {
+                phiVanChuyen.value = 30000;
+            }
+        }
+
+        // Validate
+        function kiemTraLoi() {
+            // validate
+            var khachHangVal = document.getElementById('khach-hang').value;
+            var khachHangLoi = document.getElementsByClassName('loi-khach-hang')[0];
+            if (khachHangVal == "") {
+                khachHangLoi.innerHTML = 'Lỗi chưa nhập khách hàng';
+            }
+            // tinh tien
+            var thanhTien = document.getElementById('thanh-tien');
+            var donGiaVal = document.getElementById('don-gia').value;
+            var soLuongVal = document.getElementById('so-luong').value;
+            thanhTien.value = donGiaVal * soLuongVal;
+        }
+    </script>
+</body>
+</html>

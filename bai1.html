@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .slides {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+    <div class="slideshow-container">
+        <img src="imgs/0c62bb51b4153bdf913b38bc492df41c~c5_720x720.jpeg" alt="" class="slides">
+        <img src="imgs/avatars-3SzBkNzqNX0gy8VX-tWIjhA-t500x500.jpg" alt="" class="slides">
+        <img src="imgs/deThi.png" alt="" class="slides">
+        <img src="imgs/dfault-ava.jpg" alt="" class="slides">
+    </div>
+
+    <script>
+        // Biến lấy ảnh hiện tại 
+        var slideIndex = 0;
+        var slides = document.getElementsByClassName('slides');
+
+        // Hàm hiển thị ảnh hiện tại
+        function showSlides() {
+            // Ẩn hết tất cả ảnh
+            for (var i=0; i<slides.length; i++) {
+                slides[i].style.display = 'none';
+            }
+            // Hiện ảnh hiện tại
+            slides[slideIndex].style.display = 'block';
+        }
+
+        // Lấy vị trí ảnh tiếp theo
+        function showNextSlide() {
+            slideIndex += 1;
+            // Check sau khi đến ảnh cuối -> quay về ảnh đầu tiên
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            showSlides();
+        }
+
+        // Biến check trạng thái hoạt động ảnh
+        var checkSlideShow;
+
+        // Bắt đầu slideshow tự động
+        function startSlideShow() {
+            // setInterval(hanhDongNaodo, 1500)
+            checkSlideShow = setInterval(showNextSlide, 1500);
+            showSlides();
+        }
+        startSlideShow();
+        showSlides();
+    </script>
+</body>
+</html>
